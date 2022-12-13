@@ -2,14 +2,20 @@ const int L0 = 9;
 const int L1 = 10;
 const int L2 = 11;
 const int L3 = 12;
-const int vin[5] = {0};
-const int vval[5] = {0};
+int vin[5] = {0};
+int vval[5] = {0};
 
-const int rval[] = {}
+#define RT0 10000 // Ω
+#define B 7500    // need to be recalibrated
+#define VCC 5     // Supply voltage
+#define R 10000   //
+#define T0 298.5
 
-float RT, VR, ln, TX, VRT;
+const int rval[] = {5.1, 20, 33, 47, 68}; // voltage devider resistor values
 
 float Mux1_State[10] = {0};
+
+float RT, VR, ln, TX, VRT;
 
 void setup()
 {
@@ -35,10 +41,11 @@ void loop()
   vin[3] = analogRead(A4);
   vin[3] = analogRead(A4);
 
-  for (int q = 0; i < 5; i++)
+  for (int q = 0; q < 5; q++)
   {
-    int temp = map(vin[q], 0, 1023, 0, 5);
-    vval[q] = temp * ((R1 + R2) / R2);
+    int vinval = map(vin[q], 0, 1023, 0, 5);
+
+    vval[q] = vinval * ((rval[q] + 10) / 10);
   }
 
   Serial.println("------------------Series voltages-------------------");
@@ -65,7 +72,7 @@ void tempMUX()
     digitalWrite(L1, HIGH && (i & B00000010));
     digitalWrite(L2, HIGH && (i & B00000100));
     digitalWrite(L3, HIGH && (i & B00001000));
-    VRT = analogRead(inputs[A0]); // Acquisition analog value of VRT
+    VRT = analogRead(A0); // Acquisition analog value of VRT
     VRT = (5.00 / 1023.00) * VRT;
     VR = VCC - VRT;
     RT = VRT / (VR / R); // Resistance of RT
