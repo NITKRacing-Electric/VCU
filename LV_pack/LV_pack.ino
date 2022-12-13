@@ -7,8 +7,7 @@ const int vval[5] = {0};
 
 const int rval[] = {}
 
-float RT,
-          VR, ln, TX, VRT;
+float RT, VR, ln, TX, VRT;
 
 float Mux1_State[10] = {0};
 
