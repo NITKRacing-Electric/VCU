@@ -34,7 +34,13 @@ void loop()
 {
 
   tempMUX();
+  Voltageread();
 
+  delay(100);
+}
+
+void Voltageread()
+{
   vin[0] = analogRead(A0);
   vin[1] = analogRead(A1);
   vin[2] = analogRead(A2);
@@ -61,17 +67,18 @@ void loop()
       Serial.print(" ");
     }
   }
-  delay(100);
 }
 
 void tempMUX()
 {
   for (int i = 0; i < 10; i++)
   {
+    // MUX select pins
     digitalWrite(L0, HIGH && (i & B00000001));
     digitalWrite(L1, HIGH && (i & B00000010));
     digitalWrite(L2, HIGH && (i & B00000100));
     digitalWrite(L3, HIGH && (i & B00001000));
+
     VRT = analogRead(A0); // Acquisition analog value of VRT
     VRT = (5.00 / 1023.00) * VRT;
     VR = VCC - VRT;
