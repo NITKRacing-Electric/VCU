@@ -160,6 +160,7 @@ void RTDS_check()
         {
             digitalWrite(RTDS, HIGH);
             RTDS_TRUE = 1;
+            
         }
     }
 }
@@ -169,8 +170,11 @@ void RTDS_REcheck()
         if (digitalRead(AIR1) == LOW || digitalRead(AIR2) == LOW || digitalRead(SDC_IN) == LOW  ||
             digitalRead(MG1) == LOW || digitalRead(MG2) == LOW)
         {
-            digitalWrite(RTDS, HIGH);
+            digitalWrite(RTDS,LOW);
             RTDS_TRUE = 0;
+             // throttle of both motors to 0
+              DAC1(0);
+              DAC2(0);
             Serial.print("RTDS_FAIL");
         }
     
