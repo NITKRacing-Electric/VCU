@@ -22,6 +22,8 @@
 #define ADDR1 0x60 // motorout1 DAC address
 #define ADDR2 0x61 // motorout2 DAC address
 
+int RTDS_TRUE = 0 ;
+
 struct can_frame canMsg;
 #define LV_BMS_ADDR 0x01
 #define Sensors_ADDR 0x02 //CAN
@@ -48,7 +50,7 @@ void setup()
 
     // CAN module  Intialisation
     mcp2515.reset();
-    mcp2515.setBitrate(CAN_1000KBPS);
+    mcp2515.setBitrate(CAN_500KBPS);
     mcp2515.setNormalMode();
 
     // Timer Intialistion
@@ -63,7 +65,28 @@ void setup()
 
 void loop()
 {
-    control();
+    
+    if (RTDS_TRUE){
+        
+        control();
+        TCNT1=0;
+        while(TCNT1<3125)
+        {
+         CAN();  
+         RTDS_REcheck();
+        }
+
+
+    }
+
+    else {
+        RTDS();
+         TCNT1=0;
+        while(TCNT1<3125)
+        {
+         CAN();   
+        }
+    }
 }
 
 void control()
@@ -136,9 +159,23 @@ void RTDS_check()
             digitalRead(MG1) == HIGH && digitalRead(MG2) == HIGH)
         {
             digitalWrite(RTDS, HIGH);
+            RTDS_TRUE = 1;
         }
     }
 }
+
+void RTDS_REcheck()
+{
+        if (digitalRead(AIR1) == LOW || digitalRead(AIR2) == LOW || digitalRead(SDC_IN) == LOW  ||
+            digitalRead(MG1) == LOW || digitalRead(MG2) == LOW)
+        {
+            digitalWrite(RTDS, HIGH);
+            RTDS_TRUE = 0;
+            Serial.print("RTDS_FAIL");
+        }
+    
+}
+
 
 
 void CAN()
@@ -147,8 +184,6 @@ void CAN()
    {
     LV_BMS_CAN();
     Sensors_CAN();
-    
-    
    }
  }
 
