@@ -22,6 +22,12 @@
 #define ADDR1 0x60 // motorout1 DAC address
 #define ADDR2 0x61 // motorout2 DAC address
 
+struct can_frame canMsg;
+#define LV_BMS_ADDR 0x01
+#define Sensors_ADDR 0x02 //CAN
+
+
+
 // #define AIR1 1
 // #define AIR2 2
 
@@ -134,9 +140,59 @@ void RTDS_check()
     }
 }
 
+
 void CAN()
-{
-}
+ {
+   if (mcp2515.readMessage(&canMsg) == MCP2515::ERROR_OK) //polling for incoming signals
+   {
+    LV_BMS_CAN();
+    Sensors_CAN();
+    
+    
+   }
+ }
+
+
+
+void LV_BMS_CAN()
+ {
+ if (canMsg.can_id=LV_BMS_ADDR)
+    {
+      Serial.println("c:")
+      for (int i = 0; i<6; i++)   // print the LV voltage then current data
+      { 
+      Serial.print(canMsg.data[i]);
+      Serial.print(" ");
+      }
+     
+      Serial.println("f:")
+      for (int i = 6; i<16; i++)   // print the temp data
+      { 
+      Serial.print(canMsg.data[i]);
+      Serial.print(" ");
+      }
+    
+    }
+ }
+ 
+ void Sensors_CAN()
+ {
+ if (canMsg.can_id=Sensors_ADDR)
+    {
+      Serial.println("3:")   // Wheel speed 
+      Serial.print(canMsg.data[0]);
+      Serial.print(" ");
+      }
+     
+      Serial.println("f:") //
+      for (int i = 6; i<16; i++)   // print the temp data
+      { 
+      Serial.print(canMsg.data[i]);
+      Serial.print(" ");
+      }
+    
+    }
+ }
 
 void DAC1(int output)
 {
