@@ -115,4 +115,4 @@ while True:
         sleep(1)
         GPIO.output(7, GPIO.LOW)
         sleep(1)
-   sleep(50)
+    sleep(50)
