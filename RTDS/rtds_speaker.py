@@ -87,7 +87,7 @@ B8 = 7902.13
 
 while True:
     if RTDS_IN==True & flag == False:
-        flag = True
+        flag = RTDS_IN
         GPIO.output(RTDS_OUT, GPIO.HIGH)
         pin.ChangeFrequency(C6)
         sleep(1)
@@ -115,3 +115,4 @@ while True:
         sleep(1)
         GPIO.output(7, GPIO.LOW)
         sleep(1)
+   sleep(50)
