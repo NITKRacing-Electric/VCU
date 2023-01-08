@@ -17,7 +17,7 @@
 7: [ FAULTS ] //array of faults
 
 ## Meta data for data - serial port
-### DASHBOARD\
+### DASHBOARD
 1: (Accelerator)\
 2: (Brake)\
 3: (Speed)\
