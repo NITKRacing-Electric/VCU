@@ -7,7 +7,7 @@
 - Current Pedal travel = 1.5V 
 -- Test performed from 10.81V to 9.31V 
 
-##DASHBOARD (Data types)\
+## DASHBOARD (Data types)\
 1: (Accelerator) -integer\
 2: (Brake) -integer\
 3: (Speed) -integer\
@@ -16,8 +16,8 @@
 6: (Temperature of the hottest cell) - float\
 7: [ FAULTS ] //array of faults\
 
-##Meta data for data - serial port\
-###DASHBOARD\
+## Meta data for data - serial port\
+### DASHBOARD\
 1: (Accelerator)\
 2: (Brake)\
 3: (Speed)\
@@ -26,7 +26,7 @@
 6: (Temperature of the hottest cell)\
 7: [ FAULTS ] //array of faults  \
 
-###DAQ\
+### DAQ\
 a: 4 wheel speed sensor values seperated by spaces\
 b: Accelerometer\
 c: LV Voltage and current seperated by space\
