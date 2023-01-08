@@ -7,8 +7,8 @@
 - Current Pedal travel = 1.5V 
 -- Test performed from 10.81V to 9.31V 
 
-DASHBOARD (Data types)
-1: (Accelerator) -integer
+DASHBOARD (Data types)\
+1: (Accelerator) -integer\
 2: (Brake) -integer
 3: (Speed) -integer
 4: (SOC) -float
