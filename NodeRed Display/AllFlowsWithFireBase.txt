@@ -1,0 +1,2708 @@
+[
+    {
+        "id": "8af5c12eae21128c",
+        "type": "tab",
+        "label": "OnBoardTemperatureModule",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bbf67c8a5cde579c",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6619e34bd4713880",
+        "type": "tab",
+        "label": "OnBoardDashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "203de61ff9e8fd25",
+        "type": "tab",
+        "label": "PitLaneDashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "04c2b70ab804b24e",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "87701f589d8937c7",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#ff004c",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "true",
+            "allowSwipe": "true",
+            "lockMenu": "true",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "1d12f560056ea841",
+        "type": "ui_group",
+        "name": "Temperature Monitoring Module",
+        "tab": "ca43faaac2a1eaed",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "557e6c69d95fa359",
+        "type": "ui_tab",
+        "name": "onboard Dashboard",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4a8bbfd7f4939c0c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "557e6c69d95fa359",
+        "order": 1,
+        "disp": false,
+        "width": "14",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "82ff908b70bf0e66",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 1,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "d62c5ec605a3658a",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 3,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "5804fd681a768bf0",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 4,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "990f53b10ed6b7b8",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "39a8e4f307411c5d",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1d1dd8b44acd6cef",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "45edcdc0a9eb25fc",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "840a8440d696e21a",
+        "type": "ui_spacer",
+        "z": "6619e34bd4713880",
+        "name": "spacer",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 13,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "ba85591e.eca128",
+        "type": "mqtt-broker",
+        "broker": "io.adafruit.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "15",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "1e028869.6a935",
+        "type": "mqtt-broker",
+        "broker": "Localhost",
+        "port": "1883",
+        "clientid": "LocalNodeRed",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "15",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "47056b4f2c587f15",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "8a415d96e3d29671",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "5ea86459dbd0934b",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "4fe4b82d01e1624d",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "f6b2c0828b1a811a",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "545ac207d6dada7c",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "976aae817eb004d8",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "e89e11d908ece677",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "a288f398e8fb862f",
+        "type": "firebase config",
+        "firebaseurl": "nodered-7432e-default-rtdb",
+        "loginType": "none"
+    },
+    {
+        "id": "ca43faaac2a1eaed",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "99b6d50d107c13d4",
+        "type": "ui_tab",
+        "name": "PitLaneDashboard",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "397828e4bd2fb18d",
+        "type": "ui_group",
+        "name": "PitLaneDashboard",
+        "tab": "99b6d50d107c13d4",
+        "order": 1,
+        "disp": true,
+        "width": 16,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "71a0753874735e6f",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "c28cfaa9e72e2e37",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 4,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "93ddf3516a91ce8f",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 5,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "8abba411bf0803a0",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 7,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "47fba66cf6f28b00",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 8,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "a0fe2016ed8d545f",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 9,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "2b978a67cb7e83bf",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 10,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "51e8fa0e61f255d4",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 11,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "1b474452ff5cf8a0",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 12,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "3185b0ac5ca50632",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 13,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "87cffab32f3fb3ec",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 14,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "db973e3c57894569",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 15,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "a83bd46d9d728776",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 16,
+        "width": 16,
+        "height": 1
+    },
+    {
+        "id": "2a93cd52a5be0cbf",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 17,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "f5ac139715a9ac53",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 19,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "94f5533a9787731d",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 20,
+        "width": 6,
+        "height": 1
+    },
+    {
+        "id": "d99e3cddf0d0e1d3",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 22,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "848b872ff5268286",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 24,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "7bd49cb5dfd52ae7",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 25,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b6ec58b482876d30",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 28,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c3b1925673840037",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 29,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "81a6f2c7bf8264d4",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 30,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "64a069029b56114b",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 31,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "e6b77f8e7908651e",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 32,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "9b561f11aba3f990",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 33,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2739a8d9b6a5c003",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 35,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c911eaec15a15403",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 36,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9293698901081663",
+        "type": "ui_spacer",
+        "z": "203de61ff9e8fd25",
+        "name": "spacer",
+        "group": "397828e4bd2fb18d",
+        "order": 37,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c6f72a04e0abc8c2",
+        "type": "inject",
+        "z": "8af5c12eae21128c",
+        "name": "debug/manual start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "none",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "59d44f913ec77742",
+                "c62155b675413965"
+            ]
+        ]
+    },
+    {
+        "id": "52d099696ffb3cba",
+        "type": "ui_text_input",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "label": "MUX",
+        "tooltip": "",
+        "group": "1d12f560056ea841",
+        "order": 1,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "0ac0a5b4f69fa598"
+            ]
+        ]
+    },
+    {
+        "id": "59d44f913ec77742",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "DISPLAY",
+        "func": "// let value = flow.get('mux')||0;\n\n// value+=1;\n// flow.set('mux', value);\n\n\n\nreturn { payload: [flow.get('mux'), flow.get('segment')]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "dcbef18ecae5c899"
+            ]
+        ]
+    },
+    {
+        "id": "9ebccc1cf182e09e",
+        "type": "debug",
+        "z": "8af5c12eae21128c",
+        "name": "flow.keys();",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0ac0a5b4f69fa598",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "add mux to flow",
+        "func": "if(msg.topic==\"none\")\nreturn msg;\n\nlet value = flow.get('mux') || 1;\nvalue = msg.payload;\nflow.set('mux', value);\n\nmsg.payload = flow.get('mux');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c62155b675413965",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "display all keys of flow",
+        "func": "\nreturn {payload:flow.keys()};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 300,
+        "wires": [
+            [
+                "9ebccc1cf182e09e"
+            ]
+        ]
+    },
+    {
+        "id": "4b866d7fbf594e90",
+        "type": "ui_text_input",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "label": "SEGMENT",
+        "tooltip": "",
+        "group": "1d12f560056ea841",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "a4a71c3edc681576"
+            ]
+        ]
+    },
+    {
+        "id": "a4a71c3edc681576",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "add segment to flow",
+        "func": "if (msg.topic == \"none\")\n    return msg;\n\nlet value = flow.get('segment') || 1;\nvalue = msg.payload;\nflow.set('segment', value);\n\n\nmsg.payload = flow.get('segment'); \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dcbef18ecae5c899",
+        "type": "debug",
+        "z": "8af5c12eae21128c",
+        "name": "display",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a389fdddad9ae65d",
+        "type": "inject",
+        "z": "8af5c12eae21128c",
+        "name": "SerialPortIn",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "SerialIn",
+        "payload": "3 3:1.1 2.2 3.3 4.4 5.5 6.6 7.7 9",
+        "payloadType": "str",
+        "x": 170,
+        "y": 380,
+        "wires": [
+            [
+                "b2500a34ebd42299",
+                "0a3d71ca5f48f84f",
+                "f2b230c87fe7fc5c"
+            ]
+        ]
+    },
+    {
+        "id": "b2500a34ebd42299",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "select_mux_and_segment_to_return_temperatureString",
+        "func": "var input = msg.payload;\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[0].charAt(0));\nlet segment = parseInt(pair[0].charAt(2));\n\n\n\nif (mux == flow.get('mux'))\n{\n    if (segment == flow.get('segment'))\n    {\n        let value = flow.get('temperature') || pair[1];\n        flow.set('temperature', pair[1]);\n        msg.payload = flow.get('temperature');\n    }\n}\nmsg.payload = flow.get('temperature');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ed86ba2b0aaabfc",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "to_be_changed",
+        "info": "REMOVE - MUX AND SEGMENT DISPLAY\nREPLACE - SerialPortIn with SerialIn \nFORMAT temperature String",
+        "x": 160,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d4fdf068c5cf0d11",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "Auto boot on starting RPi",
+        "info": "https://nodered.org/docs/faq/starting-node-red-on-boot\n",
+        "x": 390,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d156fd1ca8cb991a",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "USB - windows",
+        "info": "https://www.licor.com/env/support/TechTips/ttp039-serial-port.html#:~:text=To%20find%20the%20serial%20port,is%20indicated%20by%20the%20number.",
+        "x": 160,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "867e7e127b1d6982",
+        "type": "firebase modify",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "Temperature",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 820,
+        "y": 500,
+        "wires": [
+            [
+                "a0f4c0c85ede8d3f"
+            ]
+        ]
+    },
+    {
+        "id": "621022ff.9defdc",
+        "type": "debug",
+        "z": "8af5c12eae21128c",
+        "name": "RETURNS",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "8d94ee64.726b1",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "firebase.once() example flow",
+        "info": "This flow is the same as the\nfirebase.on() example flow, \nexcept that it uses \nfirebase.once(\"value\") to query Firebase\nin the middle of a flow and return a \nresponse synchronously (as opposed to \nstarting a flow whenever the firebase.on()\nevent is triggered).\n\n\nThe inject node begins the flow\nevery 5 seconds and the debug node logs \nthe weather in San Francisco, CA.",
+        "x": 200,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "68921ac1.976de4",
+        "type": "firebase.once",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "data",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 550,
+        "y": 920,
+        "wires": [
+            [
+                "621022ff.9defdc"
+            ]
+        ]
+    },
+    {
+        "id": "1af0fa3.fe50f06",
+        "type": "inject",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 920,
+        "wires": [
+            [
+                "68921ac1.976de4"
+            ]
+        ]
+    },
+    {
+        "id": "7f9d00bd.8063",
+        "type": "firebase.on",
+        "z": "8af5c12eae21128c",
+        "name": "",
+        "firebaseconfig": "e89e11d908ece677",
+        "childpath": "data",
+        "atStart": true,
+        "eventType": "value",
+        "queries": [],
+        "x": 360,
+        "y": 820,
+        "wires": [
+            [
+                "e3f4c139.1c0b4"
+            ]
+        ]
+    },
+    {
+        "id": "e3f4c139.1c0b4",
+        "type": "debug",
+        "z": "8af5c12eae21128c",
+        "name": "Value retrieved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "cdf350cb.320cb",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "firebase.on() example flow",
+        "info": "This flow provides a simple example which\nconnects to the firebase \n[weather](https://publicdata-weather.firebaseio.com/)\n[open data set](https://www.firebase.com/docs/open-data/).\n\nFirebase.on(\"value\") events are fired\nwhenever the weather changes in \nNashville, TN and sent to the debug node.\n\nYou can view the data in the debug tab\nto the right.",
+        "x": 190,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "2f20c042.d0df4",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "TO ACCESS DATA FROM DATABASE",
+        "info": "Before clicking the Deploy button,\nYou need to configure login credentials \nfor each node with a Red Triangle (all of \nthe Firebase nodes)\n\nYou can add new credentials by double \nclicking on any firebase node and \nclicking on the pencil icon in the top \nright corner of the edit dialog box. \nOnce you have created a set of credentials\nthey will be available in the drop down\nbox.\n\nFor this example, you will want to set\nFirebase to \"publicdata-weather\" \n(without the quotes) and Auth Type to \nNone.",
+        "x": 228.5,
+        "y": 731,
+        "wires": []
+    },
+    {
+        "id": "0a3d71ca5f48f84f",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "convert_to_store_in_firebase",
+        "func": "var input = msg;\nreturn input;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 500,
+        "wires": [
+            [
+                "867e7e127b1d6982"
+            ]
+        ]
+    },
+    {
+        "id": "a0f4c0c85ede8d3f",
+        "type": "debug",
+        "z": "8af5c12eae21128c",
+        "name": "temperature_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "acb106ff5eb8790c",
+        "type": "inject",
+        "z": "8af5c12eae21128c",
+        "name": "SerialPortIn",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "SerialIn",
+        "payload": "3 3:1.1 2.2 3.3 4.4 5.5 6.6 7.7 8.8 ",
+        "payloadType": "str",
+        "x": 210,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cf5db0643091852a",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "FORMAT OF DATA",
+        "info": "3 3:1.1 2.2 3.3 4.4 5.5 6.6 7.7 8.8 \nno space on either side of the colon",
+        "x": 170,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2e2db8d8552b5498",
+        "type": "ui_table",
+        "z": "8af5c12eae21128c",
+        "group": "1d12f560056ea841",
+        "name": "TEMPERATURE",
+        "order": 3,
+        "width": 8,
+        "height": 10,
+        "columns": [
+            {
+                "field": "Number",
+                "title": "Number",
+                "width": "30%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Temperature",
+                "title": "Temperature",
+                "width": "70%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 850,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f2b230c87fe7fc5c",
+        "type": "function",
+        "z": "8af5c12eae21128c",
+        "name": "select_mux_and_segment_to_return_temperatureTable",
+        "func": "var input = msg.payload;\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[0].charAt(0));\nlet segment = parseInt(pair[0].charAt(2));\n\n\n\nif (mux == flow.get('mux')) {\n    if (segment == flow.get('segment')) {\n        let value = pair[1];\n        let temperature_array = value.split(' ');\n        \n        // split at every space\n\n        var obj = [];\n        for (let index = 1; index <= 8; index++) {\n            let temp = {\n                Number:index,\n                Temperature: parseFloat(temperature_array[index-1])\n            } \n            obj.push(temp);          \n        }\n        flow.set('temperature',obj);\n\n        msg.payload = flow.get('temperature');\n    }\n}\nmsg.payload = flow.get('temperature');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "2e2db8d8552b5498"
+            ]
+        ]
+    },
+    {
+        "id": "f9a8a8cfb0adf1cf",
+        "type": "comment",
+        "z": "8af5c12eae21128c",
+        "name": "DATABASE",
+        "info": "## Data being overwritten every clockpulse\n## Availability of internet is a must",
+        "x": 150,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "5195b113bb76e214",
+        "type": "ui_text",
+        "z": "6619e34bd4713880",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Brake %",
+        "format": "{{msg.payload.data}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1100,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ec72fd021a799768",
+        "type": "ui_text",
+        "z": "6619e34bd4713880",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 14,
+        "width": 4,
+        "height": 2,
+        "name": "",
+        "label": "Hottest cell temp(°C)",
+        "format": "{{msg.payload.data}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1140,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "8f3a91685311eeef",
+        "type": "ui_text",
+        "z": "6619e34bd4713880",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Accelerator %",
+        "format": "{{msg.payload.data}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1120,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "87b536b57561ca86",
+        "type": "ui_text",
+        "z": "6619e34bd4713880",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 15,
+        "width": 14,
+        "height": 1,
+        "name": "",
+        "label": "",
+        "format": "<font color=\"red\"><font size=6>{{msg.payload.data}}</font></font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 1055,
+        "y": 400,
+        "wires": [],
+        "l": false,
+        "info": "THIS IS TO DISPLAY FAULTS"
+    },
+    {
+        "id": "9b9643e847ce65e7",
+        "type": "ui_gauge",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 11,
+        "width": 10,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "km/h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ff0000"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "className": "",
+        "x": 1250,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "826b220aa0856ffa",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "80",
+        "payloadType": "num",
+        "x": 860,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ec2e26d175908ba",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "3",
+        "payloadType": "num",
+        "x": 860,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8322106b81545329",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "78",
+        "payloadType": "num",
+        "x": 860,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24e898a19b40eaac",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "78",
+        "payloadType": "num",
+        "x": 860,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f144196b93faa9f",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "19",
+        "payloadType": "num",
+        "x": 860,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de73ef7e275747b8",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "57",
+        "payloadType": "num",
+        "x": 860,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c84dfe0455053789",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "sample data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "sample",
+        "payload": "",
+        "payloadType": "str",
+        "x": 860,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3bcbd8b0b0a46c1c",
+        "type": "ui_gauge",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 10,
+        "width": 3,
+        "height": 2,
+        "gtype": "donut",
+        "title": "SoC",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "35",
+        "seg2": "70",
+        "className": "",
+        "x": 1250,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e8a46aa08729117c",
+        "type": "inject",
+        "z": "6619e34bd4713880",
+        "name": "SerialPortIn",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "6:60",
+        "payloadType": "str",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "42c0f6b845d24b53"
+            ]
+        ]
+    },
+    {
+        "id": "42c0f6b845d24b53",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "Function_to_split_data_and_convert",
+        "func": "let input = msg.payload;\nlet pair = input.split(\":\");\n\nlet header = parseInt(pair[0].trim().charAt(0));\nlet data = pair[1].trim();\n\nswitch (header) {\n    case 1:\n        data = parseInt(data)\n        flow.set('Accelerator', data);\n        msg.payload = {\n            \"header\": 1,\n            \"data\": data\n        };\n        break;\n    case 2:\n        data = parseInt(data)\n        flow.set('Brake', data);\n        msg.payload = {\n            \"header\": 2,\n            \"data\": data\n        };\n        break;\n    case 3:\n        data = parseInt(data)\n        flow.set('Speed', data);\n        msg.payload = {\n            \"header\": 3,\n            \"data\": data\n        };\n        break;\n    case 4:\n        data = parseFloat(data);\n        flow.set('SOC', data);\n        msg.payload = {\n            \"header\": 4,\n            \"data\": data\n        };\n        break;\n    case 5:\n        data = parseFloat(data);\n        flow.set('mode', data);\n        msg.payload = {\n            \"header\": 5,\n            \"data\": data\n        };\n        break;\n    case 6:\n        data = parseFloat(data);\n        flow.set('TempHottestCell', data);\n        msg.payload = {\n            \"header\": 6,\n            \"data\": data\n        };\n        break;\n    case 7:\n        // remove brakets and split by comma to get array\n        data = data.replace(\"[\", \"\");\n        data = data.replace(\"]\", \"\");\n        data = data.trim();\n        data = data.split(\",\");\n        // convert to int\n        // data = data.map(function (x) {\n        //     return parseInt(x, 10);\n        // });\n        // store data as array in flow\n\n        flow.set('Faults', data);\n        msg.payload = {\n            \"header\": 7,\n            \"data\": data\n            // data is an array\n        };\n        break;\n\n    default:\n        msg.payload = {\n            \"header\": header,\n            \"data\": data\n        }\n        break;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nconst data = 0;\nflow.set('Accelerator', data);\nflow.set('Brake', data);\nflow.set('Speed', data);\nflow.set('SOC', data);\nflow.set('mode', data);\nflow.set('TempHottestCell', data);\nflow.set('Faults', []);",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "194b096427e8c460",
+                "17c3b3f510b896af"
+            ]
+        ]
+    },
+    {
+        "id": "194b096427e8c460",
+        "type": "switch",
+        "z": "6619e34bd4713880",
+        "name": "Switching_data_according_to_header",
+        "property": "payload.header",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "8f3a91685311eeef",
+                "88bbcda2558ff202"
+            ],
+            [
+                "5195b113bb76e214",
+                "7172e476f9e8962a"
+            ],
+            [
+                "bbe90e4ce0e632e4",
+                "1a293ad0bba3d475"
+            ],
+            [
+                "1574f5a4a2cc3212",
+                "f7d7d4d124de7162"
+            ],
+            [
+                "9616275c72160c62"
+            ],
+            [
+                "ec72fd021a799768",
+                "912ec94ff12485eb"
+            ],
+            [
+                "87b536b57561ca86"
+            ]
+        ]
+    },
+    {
+        "id": "17c3b3f510b896af",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "msg object",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bbe90e4ce0e632e4",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "Convert data",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { value: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 240,
+        "wires": [
+            [
+                "9b9643e847ce65e7"
+            ]
+        ]
+    },
+    {
+        "id": "1574f5a4a2cc3212",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "Convert data",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { value: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 280,
+        "wires": [
+            [
+                "3bcbd8b0b0a46c1c"
+            ]
+        ]
+    },
+    {
+        "id": "9616275c72160c62",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "Convert data",
+        "func": "let input = msg.payload.data\ninput = parseInt(input);\n\nlet msg2 = { payload: \"TEST\" };\n\nif (input == 1) {\n    msg2.payload = \"ACCELERATION\";\n} else if (input == 2) {\n    msg2.payload = \"ENDURANCE\";\n} else {\n    msg2.payload = \"TEST\";\n}\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 320,
+        "wires": [
+            [
+                "0b6cd0c62c0296bb",
+                "5a7528387a7c6c75"
+            ]
+        ]
+    },
+    {
+        "id": "0b6cd0c62c0296bb",
+        "type": "ui_text",
+        "z": "6619e34bd4713880",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "MODE: ",
+        "format": "<font size = 6 color = blue>{{msg.payload}}</font>",
+        "layout": "row-center",
+        "className": "",
+        "x": 1260,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e2baf8dc0b93cbf8",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "acc_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2180,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d1b41762d052c5ef",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "brake",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1720,
+        "y": 200,
+        "wires": [
+            [
+                "c5cc923b2da833fc"
+            ]
+        ]
+    },
+    {
+        "id": "c5cc923b2da833fc",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "brake_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2190,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "72a587d0b8837aac",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "speed",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1720,
+        "y": 240,
+        "wires": [
+            [
+                "bbaa77a375b62ef6"
+            ]
+        ]
+    },
+    {
+        "id": "bbaa77a375b62ef6",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "speed_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2190,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1a293ad0bba3d475",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "covertData",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { payload: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 240,
+        "wires": [
+            [
+                "72a587d0b8837aac"
+            ]
+        ]
+    },
+    {
+        "id": "7172e476f9e8962a",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "covertData",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { payload: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 200,
+        "wires": [
+            [
+                "d1b41762d052c5ef"
+            ]
+        ]
+    },
+    {
+        "id": "88bbcda2558ff202",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "covertData",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { payload: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 160,
+        "wires": [
+            [
+                "53db7e230e2c445b"
+            ]
+        ]
+    },
+    {
+        "id": "79038b042fa2c121",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "SoC",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1720,
+        "y": 300,
+        "wires": [
+            [
+                "86eb7d4e574ee9df"
+            ]
+        ]
+    },
+    {
+        "id": "86eb7d4e574ee9df",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "soc_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2180,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5a7528387a7c6c75",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "Mode",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1720,
+        "y": 340,
+        "wires": [
+            [
+                "03f05f3dee25c9e1"
+            ]
+        ]
+    },
+    {
+        "id": "03f05f3dee25c9e1",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "mode_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2190,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "42cc4fd63c582557",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "Hottest Cell Temperature",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1780,
+        "y": 380,
+        "wires": [
+            [
+                "848f9475a7569056"
+            ]
+        ]
+    },
+    {
+        "id": "848f9475a7569056",
+        "type": "debug",
+        "z": "6619e34bd4713880",
+        "name": "hottestcelltemp_database_saved",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2220,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "912ec94ff12485eb",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "covertData",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { payload: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 380,
+        "wires": [
+            [
+                "42cc4fd63c582557"
+            ]
+        ]
+    },
+    {
+        "id": "f7d7d4d124de7162",
+        "type": "function",
+        "z": "6619e34bd4713880",
+        "name": "covertData",
+        "func": "let input = msg.payload.data\n\nlet msg2 = { payload: msg.payload.data };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 300,
+        "wires": [
+            [
+                "79038b042fa2c121"
+            ]
+        ]
+    },
+    {
+        "id": "53db7e230e2c445b",
+        "type": "firebase modify",
+        "z": "6619e34bd4713880",
+        "name": "",
+        "firebaseconfig": "47056b4f2c587f15",
+        "childpath": "accelelerator",
+        "method": "set",
+        "value": "msg.payload",
+        "priority": "msg.priority",
+        "x": 1740,
+        "y": 160,
+        "wires": [
+            [
+                "e2baf8dc0b93cbf8"
+            ]
+        ]
+    },
+    {
+        "id": "a351939969c6b676",
+        "type": "ui_text_input",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "label": "MUX",
+        "tooltip": "",
+        "group": "397828e4bd2fb18d",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "4dbe15f394b696ea"
+            ]
+        ]
+    },
+    {
+        "id": "4dbe15f394b696ea",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "add mux to flow",
+        "func": "if(msg.topic==\"none\")\nreturn msg;\n\nlet value = flow.get('mux') || 1;\nvalue = msg.payload;\nflow.set('mux', value);\n\nmsg.payload = flow.get('mux');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "acf7a697a1beaca5",
+        "type": "ui_text_input",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "label": "SEGMENT",
+        "tooltip": "",
+        "group": "397828e4bd2fb18d",
+        "order": 3,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "a78513057d1e4d6e"
+            ]
+        ]
+    },
+    {
+        "id": "a78513057d1e4d6e",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "add segment to flow",
+        "func": "if (msg.topic == \"none\")\n    return msg;\n\nlet value = flow.get('segment') || 1;\nvalue = msg.payload;\nflow.set('segment', value);\n\n\nmsg.payload = flow.get('segment'); \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e9656c00682a06b",
+        "type": "inject",
+        "z": "203de61ff9e8fd25",
+        "name": "debug/manual start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "none",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "4358719afd646442",
+                "2d02e554b3ab4143"
+            ]
+        ]
+    },
+    {
+        "id": "4358719afd646442",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "DISPLAY",
+        "func": "// let value = flow.get('mux')||0;\n\n// value+=1;\n// flow.set('mux', value);\n\n\n\nreturn { payload: [flow.get('mux'), flow.get('segment')]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "ba1e90720e010bd5"
+            ]
+        ]
+    },
+    {
+        "id": "b456ae1fc3c6a9b9",
+        "type": "debug",
+        "z": "203de61ff9e8fd25",
+        "name": "flow.keys();",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2d02e554b3ab4143",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "display all keys of flow",
+        "func": "\nreturn {payload:flow.keys()};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "b456ae1fc3c6a9b9"
+            ]
+        ]
+    },
+    {
+        "id": "ba1e90720e010bd5",
+        "type": "debug",
+        "z": "203de61ff9e8fd25",
+        "name": "display",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "a469baf5f3c2f98c",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "select_mux_and_segment_to_return_temperatureString",
+        "func": "var input = msg.payload;\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[0].charAt(0));\nlet segment = parseInt(pair[0].charAt(2));\n\n\n\nif (mux == flow.get('mux'))\n{\n    if (segment == flow.get('segment'))\n    {\n        let value = flow.get('temperature') || pair[1];\n        flow.set('temperature', pair[1]);\n        msg.payload = flow.get('temperature');\n    }\n}\nmsg.payload = flow.get('temperature');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "216e5e623c70a978",
+        "type": "comment",
+        "z": "203de61ff9e8fd25",
+        "name": "USB - windows",
+        "info": "https://www.licor.com/env/support/TechTips/ttp039-serial-port.html#:~:text=To%20find%20the%20serial%20port,is%20indicated%20by%20the%20number.",
+        "x": 560,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "993f3ec31fad2bdf",
+        "type": "comment",
+        "z": "203de61ff9e8fd25",
+        "name": "FORMAT OF DATA",
+        "info": "3 3:1.1 2.2 3.3 4.4 5.5 6.6 7.7 8.8 \nno space on either side of the colon",
+        "x": 570,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5bf0b157f7b875ce",
+        "type": "ui_table",
+        "z": "203de61ff9e8fd25",
+        "group": "397828e4bd2fb18d",
+        "name": "TEMPERATURE",
+        "order": 6,
+        "width": 8,
+        "height": 5,
+        "columns": [
+            {
+                "field": "Number",
+                "title": "Number",
+                "width": "30%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Temperature",
+                "title": "Temperature",
+                "width": "70%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1410,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f4ec9fc991bf7cdf",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "select_mux_and_segment_to_return_temperatureTable",
+        "func": "var input = msg.payload;\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[0].charAt(0));\nlet segment = parseInt(pair[0].charAt(2));\n\n\n\nif (mux == flow.get('mux')) {\n    if (segment == flow.get('segment')) {\n        let value = pair[1];\n        let temperature_array = value.split(' ');\n        \n        // split at every space\n\n        var obj = [];\n        for (let index = 1; index <= 8; index++) {\n            let temp = {\n                Number:index,\n                Temperature: parseFloat(temperature_array[index-1])\n            } \n            obj.push(temp);          \n        }\n        flow.set('temperature',obj);\n\n        msg.payload = flow.get('temperature');\n    }\n}\nmsg.payload = flow.get('temperature');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            [
+                "5bf0b157f7b875ce"
+            ]
+        ]
+    },
+    {
+        "id": "c3c83fb0f1c03f22",
+        "type": "comment",
+        "z": "203de61ff9e8fd25",
+        "name": "DATABASE",
+        "info": "## Data being overwritten every clockpulse\n## Availability of internet is a must",
+        "x": 550,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "16cb208566103b91",
+        "type": "comment",
+        "z": "203de61ff9e8fd25",
+        "name": "Change Dashboard Segment to display",
+        "info": "",
+        "x": 190,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "54937e4cd85466de",
+        "type": "debug",
+        "z": "203de61ff9e8fd25",
+        "name": "temp data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "fb4b635e8c3bf5ee",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "Temperature",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "f4ec9fc991bf7cdf",
+                "54937e4cd85466de"
+            ]
+        ]
+    },
+    {
+        "id": "535ac023cc1e348b",
+        "type": "inject",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 640,
+        "wires": [
+            [
+                "28ec237c35a56566",
+                "12593a949703c302",
+                "1dcda89877a2fa69",
+                "d4018111de7db21e",
+                "8ec626c791a6a0d4",
+                "371d24d47416d191"
+            ]
+        ]
+    },
+    {
+        "id": "050cea81246aadc7",
+        "type": "ui_text",
+        "z": "203de61ff9e8fd25",
+        "group": "397828e4bd2fb18d",
+        "order": 23,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Brake %",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1120,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "45a4328364b89f2e",
+        "type": "ui_text",
+        "z": "203de61ff9e8fd25",
+        "group": "397828e4bd2fb18d",
+        "order": 34,
+        "width": 4,
+        "height": 2,
+        "name": "",
+        "label": "Hottest cell temp(°C)",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1160,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "b00054fb89746341",
+        "type": "ui_text",
+        "z": "203de61ff9e8fd25",
+        "group": "397828e4bd2fb18d",
+        "order": 21,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Accelerator %",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1140,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "7eb1c95fedf7daf0",
+        "type": "ui_text",
+        "z": "203de61ff9e8fd25",
+        "group": "4a8bbfd7f4939c0c",
+        "order": 15,
+        "width": 14,
+        "height": 1,
+        "name": "",
+        "label": "",
+        "format": "<font color=\"red\"><font size=6>{{msg.payload.data}}</font></font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 1075,
+        "y": 960,
+        "wires": [],
+        "l": false,
+        "info": "THIS IS TO DISPLAY FAULTS"
+    },
+    {
+        "id": "1298cd9cad7c16d0",
+        "type": "ui_gauge",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "group": "397828e4bd2fb18d",
+        "order": 27,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "km/h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ff0000"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "className": "",
+        "x": 1270,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "1a8a2f070eba9ac7",
+        "type": "ui_gauge",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "group": "397828e4bd2fb18d",
+        "order": 26,
+        "width": 3,
+        "height": 2,
+        "gtype": "donut",
+        "title": "SoC",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "35",
+        "seg2": "70",
+        "className": "",
+        "x": 1270,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "14604eb1318f0373",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "Convert data",
+        "func": "let input = msg.payload\n\nlet msg2 = { value: msg.payload };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 800,
+        "wires": [
+            [
+                "1298cd9cad7c16d0"
+            ]
+        ]
+    },
+    {
+        "id": "87d9ba7f21cc83d0",
+        "type": "function",
+        "z": "203de61ff9e8fd25",
+        "name": "Convert data",
+        "func": "let input = msg.payload\n\nlet msg2 = { value: msg.payload };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 840,
+        "wires": [
+            [
+                "1a8a2f070eba9ac7"
+            ]
+        ]
+    },
+    {
+        "id": "bd794c6e6b729d62",
+        "type": "ui_text",
+        "z": "203de61ff9e8fd25",
+        "group": "397828e4bd2fb18d",
+        "order": 18,
+        "width": 8,
+        "height": 1,
+        "name": "",
+        "label": "MODE: ",
+        "format": "<font size = 6 color = blue>{{msg.payload}}</font>",
+        "layout": "row-center",
+        "className": "",
+        "x": 1120,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "28ec237c35a56566",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "accelelerator",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 590,
+        "y": 720,
+        "wires": [
+            [
+                "b00054fb89746341",
+                "9bd4719f1a2e2c54"
+            ]
+        ]
+    },
+    {
+        "id": "12593a949703c302",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "brake",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 570,
+        "y": 760,
+        "wires": [
+            [
+                "050cea81246aadc7"
+            ]
+        ]
+    },
+    {
+        "id": "1dcda89877a2fa69",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "speed",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 570,
+        "y": 800,
+        "wires": [
+            [
+                "14604eb1318f0373"
+            ]
+        ]
+    },
+    {
+        "id": "d4018111de7db21e",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "SoC",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 570,
+        "y": 840,
+        "wires": [
+            [
+                "87d9ba7f21cc83d0"
+            ]
+        ]
+    },
+    {
+        "id": "8ec626c791a6a0d4",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "Mode",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 570,
+        "y": 880,
+        "wires": [
+            [
+                "bd794c6e6b729d62"
+            ]
+        ]
+    },
+    {
+        "id": "371d24d47416d191",
+        "type": "firebase.once",
+        "z": "203de61ff9e8fd25",
+        "name": "",
+        "firebaseconfig": "a288f398e8fb862f",
+        "childpath": "Hottest Cell Temperature",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 630,
+        "y": 920,
+        "wires": [
+            [
+                "45a4328364b89f2e"
+            ]
+        ]
+    },
+    {
+        "id": "9bd4719f1a2e2c54",
+        "type": "debug",
+        "z": "203de61ff9e8fd25",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 990,
+        "y": 640,
+        "wires": []
+    }
+]
