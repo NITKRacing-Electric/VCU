@@ -11,9 +11,11 @@ int vval[5] = {0};
 #define R 10000   //
 #define T0 298.5
 
+int Tmax = 0;
+
 const int rval[] = {5.1, 20, 33, 47, 68}; // voltage devider resistor values
 
-float Mux1_State[10] = {0};
+float Mux1_State[17] = {0};
 
 float RT, VR, ln, TX, VRT;
 
@@ -47,11 +49,11 @@ void Voltageread()
   vin[3] = analogRead(A4);
   vin[3] = analogRead(A4);
 
-  for (int q = 0; q < 5; q++)
+  for (int q = 11; q < 17; q++)
   {
     int vinval = map(vin[q], 0, 1023, 0, 5);
 
-    vval[q] = vinval * ((rval[q] + 10) / 10);
+    Mux1_State[q] = vinval * ((rval[q] + 10) / 10);
   }
 
   Serial.println("------------------Series voltages-------------------");
@@ -71,6 +73,7 @@ void Voltageread()
 
 void tempMUX()
 {
+  Tmax=0;
   for (int i = 0; i < 10; i++)
   {
     // MUX select pins
@@ -86,8 +89,12 @@ void tempMUX()
     ln = log(RT / RT0);
     TX = (1 / ((ln / B) + (1 / T0))); // Temperature from thermistor
     TX = TX - 273.15;
+    if(Tmax<TX){
+      TX = Tmax;
+    }
     Mux1_State[i] = TX;
   }
+  Mux1_State[10] = Tmax;
   Serial.println("------------------Cell tempretures------------------");
 
   for (int j = 0; j < 10; j++)
