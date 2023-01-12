@@ -43,52 +43,41 @@ int motorout = 0;
 
 MCP2515 mcp2515(53);
 
-void setup()
+void DAC1(int output)
 {
-    Serial.begin(9600); // Serial communication Intialisation
-    Wire.begin();       // I2C Intialisation
-
-    // CAN module  Intialisation
-    mcp2515.reset();
-    mcp2515.setBitrate(CAN_500KBPS);
-    mcp2515.setNormalMode();
-
-    // Timer Intialistion
-    TCCR1B = 0;
-    TCCR1A = 0;
-    TCCR1B = bit(CS12);
-
-    // throttle of both motors to 0
-    DAC1(0);
-    DAC2(0);
+  Wire.beginTransmission(ADDR1);
+  Wire.write(64);                 // cmd to update the DAC
+  Wire.write(output >> 4);        // the 8 most significant bits…
+  Wire.write((output & 15) << 4); // the 4 least significant bits…
+  Wire.endTransmission();
 }
 
-void loop()
+void DAC2(int output)
 {
-    
-    if (RTDS_TRUE){
-        
-        control();
-        TCNT1=0;
-        while(TCNT1<3125)
-        {
-         CAN();  
-         RTDS_REcheck();
-        }
-
-
-    }
-
-    else {
-        RTDS();
-         TCNT1=0;
-        while(TCNT1<3125)
-        {
-         CAN();   
-        }
-    }
+  Wire.beginTransmission(ADDR2);
+  Wire.write(64);                 // cmd to update the DAC
+  Wire.write(output >> 4);        // the 8 most significant bits…
+  Wire.write((output & 15) << 4); // the 4 least significant bits…
+  Wire.endTransmission();
 }
 
+int tmap(int inp)
+{
+  int tmapout;
+  if ((digitalRead(P1) == HIGH) && (digitalRead(P1) == HIGH))
+  {
+      tmapout = inp;
+  }
+  else if ((digitalRead(P1) == LOW) && (digitalRead(P1) == LOW))
+  {
+      tmapout = map(inp, 0, 4095, 0, 2047);
+  }
+  else
+  {
+      tmapout = map(inp, 0, 4095, 0, 3072);
+  }
+  return tmapout;
+}
 void control()
 {
     val1 = analogRead(APPS1);
@@ -143,7 +132,7 @@ void control()
         motorpre = (val1 + val2) * 2;
         motorout = tmap(motorpre);
         DAC1(motorout);
-        // DAC2(motorout);
+        DAC2(motorout);
         // Serial.print("ssss");
         Serial.println(motorout);
         Serial.println(val1);
@@ -154,7 +143,7 @@ void control()
 void RTDS_check()
 {
     if (digitalRead(START_BTN) == HIGH)
-    {
+    Serial.print("Button pressed");    {
         if (digitalRead(AIR1) == HIGH && digitalRead(AIR2) == HIGH && digitalRead(SDC_IN) == HIGH && analogRead(brake) > 512 &&
             digitalRead(MG1) == HIGH && digitalRead(MG2) == HIGH)
         {
@@ -165,20 +154,6 @@ void RTDS_check()
     }
 }
 
-void RTDS_REcheck()
-{
-        if (digitalRead(AIR1) == LOW || digitalRead(AIR2) == LOW || digitalRead(SDC_IN) == LOW  ||
-            digitalRead(MG1) == LOW || digitalRead(MG2) == LOW)
-        {
-            digitalWrite(RTDS,LOW);
-            RTDS_TRUE = 0;
-             // throttle of both motors to 0
-              DAC1(0);
-              DAC2(0);
-            Serial.print("RTDS_FAIL");
-        }
-    
-}
 
 
 
@@ -197,14 +172,14 @@ void LV_BMS_CAN()
  {
  if (canMsg.can_id=LV_BMS_ADDR)
     {
-      Serial.println("c:")
+      Serial.println("c:");
       for (int i = 0; i<6; i++)   // print the LV voltage then current data
       { 
       Serial.print(canMsg.data[i]);
       Serial.print(" ");
       }
      
-      Serial.println("f:")
+      Serial.println("f:");
       for (int i = 6; i<16; i++)   // print the temp data
       { 
       Serial.print(canMsg.data[i]);
@@ -217,55 +192,70 @@ void LV_BMS_CAN()
  void Sensors_CAN()
  {
  if (canMsg.can_id=Sensors_ADDR)
-    {
-      Serial.println("3:")   // Wheel speed 
-      Serial.print(canMsg.data[0]);
-      Serial.print(" ");
-      }
-     
-      Serial.println("f:") //
-      for (int i = 6; i<16; i++)   // print the temp data
-      { 
-      Serial.print(canMsg.data[i]);
-      Serial.print(" ");
-      }
+  {
+    Serial.println("3:");   // Wheel speed 
+    Serial.print(canMsg.data[0]);
+    Serial.print(" ");
+  }
+   
+  Serial.println("f:"); //
+  for (int i = 6; i<16; i++)   // print the temp data
+  { 
+    Serial.print(canMsg.data[i]);
+    Serial.print(" ");
+  }
+ 
+}
+
+
+
+
+
+
+void setup()
+{
+    Serial.begin(9600); // Serial communication Intialisation
+    Wire.begin();       // I2C Intialisation
+
+    // CAN module  Intialisation
+    mcp2515.reset();
+    mcp2515.setBitrate(CAN_500KBPS);
+    mcp2515.setNormalMode();
+
+    // Timer Intialistion
+    TCCR1B = 0;
+    TCCR1A = 0;
+    TCCR1B = bit(CS12);
+
+    // throttle of both motors to 0
+    DAC1(0);
+    DAC2(0);
+}
+
+void loop()
+{
     
-    }
- }
+    if (RTDS_TRUE){
+      Serial.print("in main loop");
+        
+        control();
+        TCNT1=0;
+        while(TCNT1<3125)
+        {
+         CAN();  
+        }
 
-void DAC1(int output)
-{
-    Wire.beginTransmission(ADDR1);
-    Wire.write(64);                 // cmd to update the DAC
-    Wire.write(output >> 4);        // the 8 most significant bits…
-    Wire.write((output & 15) << 4); // the 4 least significant bits…
-    Wire.endTransmission();
+
+    }
+
+    else {
+        RTDS_check();
+        Serial.println("checking rtds");
+         TCNT1=0;
+        while(TCNT1<3125)
+        {
+         CAN();   
+        }
+    }
 }
 
-void DAC2(int output)
-{
-    Wire.beginTransmission(ADDR2);
-    Wire.write(64);                 // cmd to update the DAC
-    Wire.write(output >> 4);        // the 8 most significant bits…
-    Wire.write((output & 15) << 4); // the 4 least significant bits…
-    Wire.endTransmission();
-}
-
-int tmap(int inp)
-{
-    int tmapout;
-    if ((digitalRead(P1) == HIGH) && (digitalRead(P1) == HIGH))
-    {
-        tmapout = inp;
-    }
-    else if ((digitalRead(P1) == LOW) && (digitalRead(P1) == LOW))
-    {
-        tmapout = map(inp, 0, 4095, 0, 2047);
-    }
-    else
-    {
-        tmapout = map(inp, 0, 4095, 0, 3072);
-    }
-
-    return tmapout;
-}
