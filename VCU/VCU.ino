@@ -27,8 +27,10 @@ int RTDS_TRUE = 0 ;
 struct can_frame canMsg;
 
 #define IMD_info_ADDR 0x37
-#define LV_BMS_ADDR 0x01
-#define Sensors_ADDR 0x02 //CAN
+#define LVTempADDR1 0x01
+#define LVTempADDR2 0x02
+#define LVVoltADDR 0x03
+#define Sensors_ADDR 0x10 //CAN
 
 
 
@@ -174,28 +176,40 @@ void CAN()
 
 
 void LV_BMS_CAN()
- {
- if (canMsg.can_id==LV_BMS_ADDR)
+{
+ if (canMsg.can_id==LVTempADDR1)
     {
-      Serial.print("c:");
-      for (int i = 0; i<6; i++)   // print the LV voltage then current data
-      { 
-      Serial.print(" ");
-      Serial.print(canMsg.data[i]);
-      }
-      Serial.println();
-     
-      Serial.print("f:");
-      for (int i = 6; i<16; i++)   // print the temp data
+      Serial.print("f1:");
+      for (int i = 0; i<canMsg.can_dlc; i++)  // print the LV pack temp2 data
       { 
       Serial.print(" ");
       Serial.print(canMsg.data[i]);
       }
       Serial.println();
 
-      
-    
     }
+  if (canMsg.can_id==LVTempADDR2)
+    {   
+      Serial.print("f2:");
+      for (int i = 0; i<canMsg.can_dlc; i++)   // print the LV pack temp2 data
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println();
+    }
+     
+      if (canMsg.can_id==LVTempADDR2)
+    {   
+      Serial.print("c:");
+      for (int i = 0; i<canMsg.can_dlc; i++)  // print the LV voltage then current data
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println();
+    }
+
  }
  
 void Sensors_CAN()
@@ -262,7 +276,7 @@ void setup()
 
     // CAN module  Intialisation
     mcp2515.reset();
-    mcp2515.setBitrate(CAN_500KBPS);
+    mcp2515.setBitrate(CAN_500KBPS,MCP_8MHZ);
     mcp2515.setNormalMode();
 
     // Timer Intialistion
@@ -303,4 +317,3 @@ void loop()
         }
     }
 }
-
