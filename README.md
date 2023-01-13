@@ -32,7 +32,8 @@ b: Accelerometer\
 c: LV Voltage and current seperated by space\
 d: HV Voltage and current seperated by space\
 e: HV Temperature "String" with meta data of cell number(mux) and data temperature seperated by spaces\
-f: LV Temperature "String" with meta data of cell number(mux) and data temperature seperated by spaces\
+f1: LV Temperatures1 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
+f2: LV Temperatures2 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
 g: Fault codes seperated by spaces or passed as an array\
 h: BMS data "String" with meta data(if required) and data\
 i: Motor Controller split current seperated by space
