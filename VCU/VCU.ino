@@ -25,6 +25,8 @@
 int RTDS_TRUE = 0 ;
 
 struct can_frame canMsg;
+struct can_frame IMDselfTestMsg;
+
 
 #define IMD_info_ADDR 0x37
 #define LVTempADDR1 0x01
@@ -152,7 +154,7 @@ void RTDS_check()
     Serial.print("Button pressed");    {
         if (digitalRead(AIR1) == HIGH && digitalRead(AIR2) == HIGH && digitalRead(SDC_IN) == HIGH && analogRead(brake) > 512 &&
             digitalRead(MG1) == HIGH && digitalRead(MG2) == HIGH)
-        {
+        {   mcp2515.sendMessage(&IMDselfTestMsg);//IMD self test
             digitalWrite(RTDS, HIGH);
             RTDS_TRUE = 1;
             
@@ -199,7 +201,7 @@ void LV_BMS_CAN()
       Serial.println();
     }
      
-      if (canMsg.can_id==LVTempADDR2)
+      if (canMsg.can_id==LVVoltADDR)
     {   
       Serial.print("c:");
       for (int i = 0; i<canMsg.can_dlc; i++)  // print the LV voltage then current data
@@ -278,6 +280,14 @@ void setup()
     mcp2515.reset();
     mcp2515.setBitrate(CAN_500KBPS,MCP_8MHZ);
     mcp2515.setNormalMode();
+
+    IMDselfTestMsg.can_id  = 0x22;
+    IMDselfTestMsg.can_dlc = 5;
+    IMDselfTestMsg.data[0] = 0x21;
+    IMDselfTestMsg.data[1] = 1;
+    IMDselfTestMsg.data[2] = 0;
+    IMDselfTestMsg.data[3] = 0;
+    IMDselfTestMsg.data[4] = 0;
 
     // Timer Intialistion
     TCCR1B = 0;
