@@ -45,6 +45,8 @@ MCP2515 mcp2515(53);
 
 void DAC1(int output)
 {
+  Serial.print("POWER : ");
+  Serial.print("output");
   Wire.beginTransmission(ADDR1);
   Wire.write(64);                 // cmd to update the DAC
   Wire.write(output >> 4);        // the 8 most significant bits…
@@ -91,8 +93,8 @@ void control()
         DAC1(0);
         DAC2(0);
 
-        // Serial.print("brake:");
-        // Serial.println(brake);
+        Serial.print("brake:");
+        Serial.println(brake);
     }
 
     // sensor failure (outside acceptable range)
