@@ -131,6 +131,7 @@ void control()
         if (abs(var1 - var2) > 103)
         {
              RTDS_TRUE = 0 ;
+             Serial.println("7:APPS implausibility failure");
             // Serial.print("APPS implausibility failure :");
             // Serial.println(var1-var2);
         }
@@ -255,10 +256,7 @@ void IMD_CAN()
 {
   if (canMsg.can_id==IMD_info_ADDR)
   {
-    Serial.print(canMsg.can_id, HEX); // print  ID
-    Serial.print("  "); 
-    Serial.print(canMsg.can_dlc); // print DLC
-    
+    Serial.print("i:"); // sending message
     for (int i = 0; i<canMsg.can_dlc; i++)   // print the data
       { 
       Serial.print(" ");
@@ -343,5 +341,6 @@ void loop()
 }
 ISR(TIMER1_COMPA_vect)
 {
- digitalWrite(SC_Relay,LOW); 
+ digitalWrite(SC_Relay,LOW);
+ Serial.println("7:VCU Failure");
 }
