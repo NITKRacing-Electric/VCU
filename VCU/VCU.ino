@@ -23,6 +23,7 @@
 #define ADDR2 0x61 // motorout2 DAC address
 
 int RTDS_TRUE = 0 ;
+unsigned long t = 0;
 
 struct can_frame canMsg;
 struct can_frame IMDselfTestMsg;
@@ -116,8 +117,8 @@ void control()
         DAC1(0);
         DAC2(0);
 
-        TCNT1 = 0;
-        while (TCNT1 <= 6250)
+       t = millis();
+       while((unsigned long)(millis() - t)<100)
         {
             var1 = analogRead(APPS1);
             var2 = analogRead(APPS2);
@@ -129,6 +130,7 @@ void control()
 
         if (abs(var1 - var2) > 103)
         {
+             RTDS_TRUE = 0 ;
             // Serial.print("APPS implausibility failure :");
             // Serial.println(var1-var2);
         }
@@ -276,6 +278,8 @@ void setup()
     Serial.begin(9600); // Serial communication Intialisation
     Wire.begin();       // I2C Intialisation
 
+    
+
     // CAN module  Intialisation
     mcp2515.reset();
     mcp2515.setBitrate(CAN_500KBPS,MCP_8MHZ);
@@ -289,41 +293,55 @@ void setup()
     IMDselfTestMsg.data[3] = 0;
     IMDselfTestMsg.data[4] = 0;
 
-    // Timer Intialistion
-    TCCR1B = 0;
-    TCCR1A = 0;
-    TCCR1B = bit(CS12);
+
 
     // throttle of both motors to 0
     DAC1(0);
     DAC2(0);
     delay(10);
     digitalWrite(SC_Relay,HIGH);
+
+    // Timer Intialistion
+     TCCR1A = 0;// set entire TCCR1A register to 0
+     TCCR1B = 0;// same for TCCR1B
+     TCNT1  = 0;//initialize counter value to 0
+     // set compare match register for 1hz increments
+     OCR1A = 12500;//200ms
+     // turn on CTC mode
+     TCCR1B |= (1 << WGM12);
+     // Set CS12  for 256  prescaler
+     TCCR1B |= (1 << CS12);
+     // enable timer compare interrupt
+     TIMSK1 |= (1 << OCIE1A);
+
 }
 
 void loop()
 {
-    
+    TCNT1=0;
     if (RTDS_TRUE){
       Serial.print("in main loop");
         
         control();
-        TCNT1=0;
-        while(TCNT1<3125)
+        t = millis();
+        while((unsigned long)(millis() - t)<50)
         {
          CAN();  
         }
-
 
     }
 
     else {
         RTDS_check();
         Serial.println("checking rtds");
-         TCNT1=0;
-        while(TCNT1<3125)
+        t = millis();
+        while((unsigned long)(millis() - t)<50)
         {
          CAN();   
         }
     }
+}
+ISR(TIMER1_COMPA_vect)
+{
+ digitalWrite(SC_Relay,LOW); 
 }
