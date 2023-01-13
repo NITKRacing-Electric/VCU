@@ -4,7 +4,7 @@
 
 #define APPS1 A0
 #define APPS2 A1
-#define brake A3
+#define brakein A3
 #define RTDS 10
 #define P1 13
 #define P2 12
@@ -114,9 +114,7 @@ void control()
 
     else if (abs(val1 - val2) > 103)
     {
-        DAC1(0);
-        DAC2(0);
-
+       
        t = millis();
        while((unsigned long)(millis() - t)<100)
         {
@@ -132,8 +130,11 @@ void control()
         {
              RTDS_TRUE = 0 ;
              Serial.println("7:APPS implausibility failure");
-            // Serial.print("APPS implausibility failure :");
-            // Serial.println(var1-var2);
+             DAC1(0);
+             DAC2(0);
+
+             // Serial.print("APPS implausibility failure :");
+             // Serial.println(var1-var2);
         }
     }
 
