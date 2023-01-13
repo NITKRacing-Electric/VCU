@@ -4,7 +4,7 @@
 
 #define APPS1 A0
 #define APPS2 A1
-#define brakein A3
+#define brake A3
 #define RTDS 10
 #define P1 13
 #define P2 12
