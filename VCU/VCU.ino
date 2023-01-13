@@ -25,6 +25,8 @@
 int RTDS_TRUE = 0 ;
 
 struct can_frame canMsg;
+
+#define IMD_info_ADDR 0x37
 #define LV_BMS_ADDR 0x01
 #define Sensors_ADDR 0x02 //CAN
 
@@ -165,6 +167,7 @@ void CAN()
    {
     LV_BMS_CAN();
     Sensors_CAN();
+    IMD_CAN();
    }
  }
 
@@ -172,43 +175,81 @@ void CAN()
 
 void LV_BMS_CAN()
  {
- if (canMsg.can_id=LV_BMS_ADDR)
+ if (canMsg.can_id==LV_BMS_ADDR)
     {
-      Serial.println("c:");
+      Serial.print("c:");
       for (int i = 0; i<6; i++)   // print the LV voltage then current data
       { 
-      Serial.print(canMsg.data[i]);
       Serial.print(" ");
+      Serial.print(canMsg.data[i]);
       }
+      Serial.println();
      
-      Serial.println("f:");
+      Serial.print("f:");
       for (int i = 6; i<16; i++)   // print the temp data
       { 
-      Serial.print(canMsg.data[i]);
       Serial.print(" ");
+      Serial.print(canMsg.data[i]);
       }
+      Serial.println();
+
+      
     
     }
  }
  
- void Sensors_CAN()
+void Sensors_CAN()
  {
- if (canMsg.can_id=Sensors_ADDR)
-  {
-    Serial.println("3:");   // Wheel speed 
-    Serial.print(canMsg.data[0]);
-    Serial.print(" ");
-  }
-   
-  Serial.println("f:"); //
-  for (int i = 6; i<16; i++)   // print the temp data
-  { 
-    Serial.print(canMsg.data[i]);
-    Serial.print(" ");
-  }
- 
-}
+ if (canMsg.can_id==Sensors_ADDR)
+    {
+      Serial.println("3:");   // speed
+      Serial.println(canMsg.data[0]);
+     
+      Serial.print("a:") ;//wheel speeds
+      for (int i = 1; i<5; i++)  
+      { 
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println();
 
+      Serial.print("b:") ;//accelaration x y z
+      for (int i = 5; i<8; i++)  
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println();
+
+      Serial.print("j:") ;//Motor temperature 
+      for (int i = 8; i<10; i++)  
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println();
+      Serial.print("3:");   // Eror code motor controller  
+      Serial.print(" ");
+      Serial.println(canMsg.data[10]);
+    }
+    }
+
+void IMD_CAN()
+{
+  if (canMsg.can_id==IMD_info_ADDR)
+  {
+    Serial.print(canMsg.can_id, HEX); // print  ID
+    Serial.print("  "); 
+    Serial.print(canMsg.can_dlc); // print DLC
+    
+    for (int i = 0; i<canMsg.can_dlc; i++)   // print the data
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+    Serial.println(); 
+   
+  }
+}
 
 
 
