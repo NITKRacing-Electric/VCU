@@ -232,6 +232,8 @@ void setup()
     // throttle of both motors to 0
     DAC1(0);
     DAC2(0);
+    delay(10);
+    digitalWrite(SC_Relay,HIGH);
 }
 
 void loop()
