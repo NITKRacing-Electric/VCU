@@ -1,15 +1,24 @@
+#include <SPI.h>
+#include <mcp2515.h>
+
 const int L0 = 9;
 const int L1 = 10;
 const int L2 = 11;
 const int L3 = 12;
 int vin[5] = {0};
-int vval[5] = {0};
 
 #define RT0 10000 // Ω
 #define B 7500    // need to be recalibrated
 #define VCC 5     // Supply voltage
 #define R 10000   //
 #define T0 298.5
+
+#define LVTempADDR1 0x01
+#define LVTempADDR2 0x02
+#define LVVoltADDR 0x03
+
+struct can_frame canMsg;
+MCP2515 mcp2515(10);
 
 int Tmax = 0;
 
@@ -21,6 +30,9 @@ float RT, VR, ln, TX, VRT;
 
 void setup()
 {
+  mcp2515.reset();
+  mcp2515.setBitrate(CAN_500KBPS,MCP_8MHZ);
+  mcp2515.setNormalMode();
   pinMode(L0, OUTPUT);
   pinMode(L1, OUTPUT);
   pinMode(L2, OUTPUT);
@@ -37,6 +49,7 @@ void loop()
 
   tempMUX();
   Voltageread();
+  CAN();
 
   delay(100);
 }
@@ -46,14 +59,14 @@ void Voltageread()
   vin[0] = analogRead(A0);
   vin[1] = analogRead(A1);
   vin[2] = analogRead(A2);
-  vin[3] = analogRead(A4);
-  vin[3] = analogRead(A4);
+  vin[3] = analogRead(A3);
+  vin[4] = analogRead(A4);
 
   for (int q = 11; q < 17; q++)
   {
-    int vinval = map(vin[q], 0, 1023, 0, 5);
+    float vinval = map(vin[q-11], 0, 1023, 0, 5);
 
-    Mux1_State[q] = vinval * ((rval[q] + 10) / 10);
+    Mux1_State[q] = vinval * (rval[q-11] + 10);
   }
 
   Serial.println("------------------Series voltages-------------------");
@@ -61,11 +74,11 @@ void Voltageread()
   {
     if (j == 3)
     {
-      Serial.println(vval[j]);
+      Serial.println(Mux1_State[j+11]);
     }
     else
     {
-      Serial.print(vval[j]);
+      Serial.print(Mux1_State[j+11]);
       Serial.print(" ");
     }
   }
@@ -101,13 +114,42 @@ void tempMUX()
   {
     if (j == 9)
     {
-      Serial.println(Mux1_State[j]);
+      Serial.println(Mux1_State[j]/10);
     }
 
     else
     {
-      Serial.print(Mux1_State[j]);
+      Serial.print(Mux1_State[j]/10);
       Serial.print(" ");
     }
   }
+}
+
+void CAN()
+{
+ canMsg.can_id=LVTempADDR1;
+ canMsg.can_dlc=8;
+ for (int i = 0; i<8; i++)
+ {
+  canMsg.data[i]=(int)Mux1_State[i];
+ } 
+ mcp2515.sendMessage(&canMsg);
+
+ canMsg.can_id=LVTempADDR2;
+ canMsg.can_dlc=3;
+ for (int i = 0; i<3; i++)
+ {
+  canMsg.data[i] = (int)Mux1_State[i+8];
+ } 
+ mcp2515.sendMessage(&canMsg);
+
+
+ canMsg.can_id=LVVoltADDR;
+ canMsg.can_dlc=7;
+ for (int i = 0; i<6; i++)
+ {
+  canMsg.data[i]=(int)Mux1_State[i+11];
+ } 
+ mcp2515.sendMessage(&canMsg);
+
 }
