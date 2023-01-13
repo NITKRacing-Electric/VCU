@@ -75,14 +75,17 @@ int tmap(int inp)
   int tmapout;
   if ((digitalRead(P1) == HIGH) && (digitalRead(P1) == HIGH))
   {
+      Serial.println("5:1");
       tmapout = inp;
   }
   else if ((digitalRead(P1) == LOW) && (digitalRead(P1) == LOW))
   {
+      Serial.println("5:2");
       tmapout = map(inp, 0, 4095, 0, 2047);
   }
   else
   {
+      Serial.println("5:3");
       tmapout = map(inp, 0, 4095, 0, 3072);
   }
   return tmapout;
@@ -257,6 +260,10 @@ void IMD_CAN()
 {
   if (canMsg.can_id==IMD_info_ADDR)
   {
+    if(canMsg.data[2] & B00000111)
+    {
+     Serial.println("7:IMD Failure");
+    }
     Serial.print("i:"); // sending message
     for (int i = 0; i<canMsg.can_dlc; i++)   // print the data
       { 
