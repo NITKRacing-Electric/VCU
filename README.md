@@ -2,6 +2,7 @@
 ## reboot switch - option using button
 ## Nodered on boot
 ## Fullscreen dashboard
+custom zoom
 ## Web browser on start
 
 # VCU
