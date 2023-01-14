@@ -1,4 +1,8 @@
 ## RPi - on start-up - https://gist.github.com/rampfox/085bf3ffb9ff51e114bf7afdf3ced71b
+## reboot switch - option using button
+## Nodered on boot
+## Fullscreen dashboard
+## Web browser on start
 
 # VCU
 
