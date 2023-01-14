@@ -32,6 +32,10 @@ custom zoom
 5: Mode - 1acceleration, 2 endurance or 3 test\
 6: (Temperature of the hottest cell)\
 7: [ FAULTS ] //array of faults  
+8: hv voltage
+9: hv current
+10: lv voltage
+11: lv current
 
 ### DAQ
 a: 4 wheel speed sensor values seperated by spaces\
