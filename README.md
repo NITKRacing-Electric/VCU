@@ -32,16 +32,13 @@ custom zoom
 5: Mode - 1acceleration, 2 endurance or 3 test\
 6: (Temperature of the hottest cell)\
 7: [ FAULTS ] //array of faults  
-8: hv voltage
-9: hv current
-10: lv voltage
-11: lv current
+
 
 ### DAQ
 a: 4 wheel speed sensor values seperated by spaces\
 b: Accelerometer\
-c: LV Voltage and current seperated by space\
-d: HV Voltage and current seperated by space\
+#### c: LV Voltage and current seperated by space\
+#### d: HV Voltage and current seperated by space\
 e: HV Temperature "String" with meta data of cell number(mux) and data temperature seperated by spaces\
 f1: LV Temperatures1 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
 f2: LV Temperatures2 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
