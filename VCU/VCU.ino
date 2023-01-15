@@ -24,6 +24,14 @@
 
 int RTDS_TRUE = 0 ;
 unsigned long t = 0;
+int sum;
+
+float HV_Current;
+float LV_Current;
+float HV_Voltage;
+float LV_Voltage;
+float HV_SOC;
+
 
 struct can_frame canMsg;
 struct can_frame IMDselfTestMsg;
@@ -33,6 +41,12 @@ struct can_frame IMDselfTestMsg;
 #define LVTempADDR1 0x01
 #define LVTempADDR2 0x02
 #define LVVoltADDR 0x03
+
+#define Cell_Broadcast_ADDR 0x36
+#define BMS_ADDR1 0x6B0 
+#define BMS_ADDR2 0x6B1
+#define BMS_ADDR3 0x6B2
+
 #define Sensors_ADDR 0x10 //CAN
 
 
@@ -274,6 +288,80 @@ void IMD_CAN()
    
   }
 }
+void BMS_CAN()
+{
+
+   if (canMsg.can_id==Cell_Broadcast_ADDR)
+    {
+      Serial.print("d:");
+      for (int i = 0; i<canMsg.can_dlc; i++)  // print Cell broadcast
+      { 
+      Serial.print(canMsg.data[i]);
+      Serial.print(" ");
+      }
+      Serial.println(Checksum());
+
+    }
+  if (canMsg.can_id==BMS_ADDR1)
+    {   
+      Serial.print("K1:");
+      for (int i = 0; i<canMsg.can_dlc; i++)   //BMS status 1
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println(Checksum());
+
+      HV_Current = ((canMsg.data[0]<<8)+canMsg.data[1])/10;
+
+      Serial.print("m:");
+      Serial.println(HV_Current);
+
+      HV_Voltage = ((canMsg.data[2]<<8)+canMsg.data[3])/10;
+
+      Serial.print("l:");
+      Serial.println(HV_Voltage);
+
+      HV_SOC = canMsg.data[4]/2;
+      
+      Serial.print("4:");
+      Serial.println(HV_Voltage);
+
+
+
+    }
+
+     if (canMsg.can_id==BMS_ADDR2)
+    {   
+      Serial.print("K2:");
+      for (int i = 0; i<canMsg.can_dlc; i++)   // BMS status 2
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println(Checksum());
+      
+    }
+    
+
+    if (canMsg.can_id==BMS_ADDR3)
+    {   
+      Serial.print("K3:");
+      for (int i = 0; i<canMsg.can_dlc; i++)   // BMS status 3
+      { 
+      Serial.print(" ");
+      Serial.print(canMsg.data[i]);
+      }
+      Serial.println(Checksum());
+      
+      if(canMsg.data[1] || canMsg.data[2] || canMsg.data[3])
+      {
+        Serial.println("7:BMS fault");
+      }
+    }
+
+}
+    
 
 
 
@@ -347,8 +435,23 @@ void loop()
         }
     }
 }
+
 ISR(TIMER1_COMPA_vect)
 {
  digitalWrite(SC_Relay,LOW);
  Serial.println("7:VCU Failure");
+}
+
+bool Checksum()
+{
+  sum = canMsg.can_id + canMsg.can_dlc;
+  for (int i = 0; i<canMsg.can_dlc-1; i++)
+  {
+   sum = sum + canMsg.data[i];
+  }
+
+  sum = sum>>8;
+
+  return sum == canMsg.data[canMsg.can_dlc-1];
+
 }
