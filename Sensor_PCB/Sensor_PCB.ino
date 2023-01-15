@@ -11,16 +11,15 @@ const int sampleSize = 10;
 
 void setup()
 {
-    analogReference(EXTERNAL);
     Serial.begin(9600);
 }
 
 void loop()
 {
     // Read raw values
-    int xRaw = ReadAxis(xInput);
-    int yRaw = ReadAxis(yInput);
-    int zRaw = ReadAxis(zInput);
+    int xRaw = ReadAxis(xInput) * (5/3.3);
+    int yRaw = ReadAxis(yInput) * (5/3.3);
+    int zRaw = ReadAxis(zInput) * (5/3.3);
 
     // Convert raw values to 'milli-Gs"
     long xScaled = map(xRaw, RawMin, RawMax, -3000, 3000);
