@@ -38,7 +38,7 @@ custom zoom
 a: 4 wheel speed sensor values seperated by spaces\
 b: Accelerometer\
 #### c: LV Voltage and current seperated by space\
-#### d: HV Voltage and current seperated by space\
+#### d: HV Cell Broadcast\
 e: HV Temperature "String" with meta data of cell number(mux) and data temperature seperated by spaces\
 #### f1: LV Temperatures1 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
 #### f2: LV Temperatures2 "String" with meta data of cell number(mux) and data temperature seperated by spaces\
