@@ -45,4 +45,7 @@ e: HV Temperature "String" with meta data of cell number(mux) and data temperatu
 g: Fault codes seperated by spaces or passed as an array\
 h: BMS data "String" with meta data(if required) and data\
 i: Motor Controller split current seperated by space\
-j: IMD status code
+j: IMD status code\
+k1:BMS status 1 0x6B0(Pack current,Voltage,SOC,relay state,Checksum)\
+k2:BMS status 2 0x6B1(Pack DCL,CCL,Average Current,Checksum)\
+k3:BMS status 3 0x6B2(DTC flag#1,DTC flag#2,High voltage Cell ID,Pack Health,Low Voltage Cell ID,Checksum)\
