@@ -24,14 +24,15 @@ int Tmax = 0;
 
 const int rval[] = {5.1, 20, 33, 47, 68}; // voltage devider resistor values
 
-float Mux1_State[17] = {0};
+float Mux1_State[18] = {0};
+// 0-9 tempretures 10 max tempreture 11-15 serial voltages 16 pack voltage 17 current
 
 float RT, VR, ln, TX, VRT;
 
 void setup()
 {
   mcp2515.reset();
-  mcp2515.setBitrate(CAN_500KBPS,MCP_8MHZ);
+  mcp2515.setBitrate(CAN_500KBPS, MCP_8MHZ);
   mcp2515.setNormalMode();
   pinMode(L0, OUTPUT);
   pinMode(L1, OUTPUT);
@@ -64,21 +65,28 @@ void Voltageread()
 
   for (int q = 11; q < 17; q++)
   {
-    float vinval = map(vin[q-11], 0, 1023, 0, 5);
+    float vinval = map(vin[q - 11], 0, 1023, 0, 5);
 
-    Mux1_State[q] = vinval * (rval[q-11] + 10);
+    Mux1_State[q] = vinval * (rval[q - 11] + 10);
   }
+
+  Mux1_State[16] = Mux1_State[15]
+  Mux1_State[12] = Mux1_State[12] - Mux1_State[11];
+  Mux1_State[13] = Mux1_State[13] - Mux1_State[12] - Mux1_State[11];
+  Mux1_State[14] = Mux1_State[14] - Mux1_State[13] - Mux1_State[12] - Mux1_State[11];
+  Mux1_State[15] = Mux1_State[15] - Mux1_State[14] - Mux1_State[13] - Mux1_State[12] - Mux1_State[11];
+  
 
   Serial.println("------------------Series voltages-------------------");
   for (int j = 0; j < 4; j++)
   {
     if (j == 3)
     {
-      Serial.println(Mux1_State[j+11]);
+      Serial.println(Mux1_State[j + 11]);
     }
     else
     {
-      Serial.print(Mux1_State[j+11]);
+      Serial.print(Mux1_State[j + 11]);
       Serial.print(" ");
     }
   }
@@ -86,7 +94,7 @@ void Voltageread()
 
 void tempMUX()
 {
-  Tmax=0;
+  Tmax = 0;
   for (int i = 0; i < 10; i++)
   {
     // MUX select pins
@@ -102,7 +110,8 @@ void tempMUX()
     ln = log(RT / RT0);
     TX = (1 / ((ln / B) + (1 / T0))); // Temperature from thermistor
     TX = TX - 273.15;
-    if(Tmax<TX){
+    if (Tmax < TX)
+    {
       TX = Tmax;
     }
     Mux1_State[i] = TX;
@@ -114,12 +123,12 @@ void tempMUX()
   {
     if (j == 9)
     {
-      Serial.println(Mux1_State[j]/10);
+      Serial.println(Mux1_State[j] / 10);
     }
 
     else
     {
-      Serial.print(Mux1_State[j]/10);
+      Serial.print(Mux1_State[j] / 10);
       Serial.print(" ");
     }
   }
@@ -127,29 +136,27 @@ void tempMUX()
 
 void CAN()
 {
- canMsg.can_id=LVTempADDR1;
- canMsg.can_dlc=8;
- for (int i = 0; i<8; i++)
- {
-  canMsg.data[i]=(int)Mux1_State[i];
- } 
- mcp2515.sendMessage(&canMsg);
+  canMsg.can_id = LVTempADDR1;
+  canMsg.can_dlc = 8;
+  for (int i = 0; i < 8; i++)
+  {
+    canMsg.data[i] = (int)Mux1_State[i];
+  }
+  mcp2515.sendMessage(&canMsg);
 
- canMsg.can_id=LVTempADDR2;
- canMsg.can_dlc=3;
- for (int i = 0; i<3; i++)
- {
-  canMsg.data[i] = (int)Mux1_State[i+8];
- } 
- mcp2515.sendMessage(&canMsg);
+  canMsg.can_id = LVTempADDR2;
+  canMsg.can_dlc = 3;
+  for (int i = 0; i < 3; i++)
+  {
+    canMsg.data[i] = (int)Mux1_State[i + 8];
+  }
+  mcp2515.sendMessage(&canMsg);
 
-
- canMsg.can_id=LVVoltADDR;
- canMsg.can_dlc=7;
- for (int i = 0; i<6; i++)
- {
-  canMsg.data[i]=(int)Mux1_State[i+11];
- } 
- mcp2515.sendMessage(&canMsg);
-
+  canMsg.can_id = LVVoltADDR;
+  canMsg.can_dlc = 7;
+  for (int i = 0; i < 7; i++)
+  {
+    canMsg.data[i] = (int)Mux1_State[i + 11];
+  }
+  mcp2515.sendMessage(&canMsg);
 }
