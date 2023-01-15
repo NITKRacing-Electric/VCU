@@ -1,10 +1,10 @@
 #include <SPI.h>
 #include <mcp2515.h>
 
-const int L0 = 9;
-const int L1 = 10;
-const int L2 = 11;
-const int L3 = 12;
+const int L0 = 3;
+const int L1 = 4;
+const int L2 = 5;
+const int L3 = 6;
 int vin[5] = {0};
 
 #define RT0 10000 // Ω
