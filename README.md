@@ -54,4 +54,4 @@ k3:BMS status 3 0x6B2(DTC flag#1,DTC flag#2,High voltage Cell ID,Pack Health,Low
 #### m:HV Pack Current
 
 #### n:LV Pack Voltage
-#### l:LV Pack Current
+#### o:LV Pack Current
