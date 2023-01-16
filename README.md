@@ -1,12 +1,4 @@
-## RPi - on start-up - https://gist.github.com/rampfox/085bf3ffb9ff51e114bf7afdf3ced71b
-## reboot switch - option using button
-## Nodered on boot
-## Fullscreen dashboard
-custom zoom
-## Web browser on start
-
 # VCU
-
 - CAN - test codes for sending decoding can messages between two arduinos
 
 - APPS_V1 - code for checking apps implausibility and brake input (shutting motor down not included)
