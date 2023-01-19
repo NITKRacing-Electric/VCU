@@ -1,0 +1,1068 @@
+[
+    {
+        "id": "483f542357e9c30a",
+        "type": "ui_text_input",
+        "z": "69e195d3274c1ed7",
+        "name": "",
+        "label": "MUX",
+        "tooltip": "",
+        "group": "e2bfed23a073f5f0",
+        "order": 7,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "2670010a99d2843d"
+            ]
+        ]
+    },
+    {
+        "id": "2670010a99d2843d",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "add mux to flow",
+        "func": "if(msg.topic==\"none\")\nreturn msg;\n\nlet value = flow.get('mux') || 1;\nvalue = msg.payload;\nflow.set('mux', value);\n\nmsg.payload = flow.get('mux');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "07c458efe1d506c8",
+        "type": "ui_text_input",
+        "z": "69e195d3274c1ed7",
+        "name": "",
+        "label": "SEGMENT",
+        "tooltip": "",
+        "group": "e2bfed23a073f5f0",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "bf75b9a615eb23ef"
+            ]
+        ]
+    },
+    {
+        "id": "bf75b9a615eb23ef",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "add segment to flow",
+        "func": "if (msg.topic == \"none\")\n    return msg;\n\nlet value = flow.get('segment') || 1;\nvalue = msg.payload;\nflow.set('segment', value);\n\n\nmsg.payload = flow.get('segment'); \n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c3a5802723cfe4d6",
+        "type": "inject",
+        "z": "69e195d3274c1ed7",
+        "name": "debug/manual start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "none",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "af089f26a0ee3743",
+                "7774419b9b36ac62"
+            ]
+        ]
+    },
+    {
+        "id": "af089f26a0ee3743",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "DISPLAY",
+        "func": "// let value = flow.get('mux')||0;\n\n// value+=1;\n// flow.set('mux', value);\n\n\n\nreturn { payload: [flow.get('mux'), flow.get('segment')]};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 200,
+        "wires": [
+            [
+                "85759ffc36eb681e"
+            ]
+        ]
+    },
+    {
+        "id": "1a8fb3821c42c6b7",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "flow.keys();",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "7774419b9b36ac62",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "display all keys of flow",
+        "func": "\nreturn {payload:flow.keys()};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "1a8fb3821c42c6b7"
+            ]
+        ]
+    },
+    {
+        "id": "85759ffc36eb681e",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "display",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "bf2fed4cedb7b1bd",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "select_mux_and_segment_to_return_temperatureString",
+        "func": "var input = msg.payload;\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[0].charAt(0));\nlet segment = parseInt(pair[0].charAt(2));\n\n\n\nif (mux == flow.get('mux'))\n{\n    if (segment == flow.get('segment'))\n    {\n        let value = flow.get('temperature') || pair[1];\n        flow.set('temperature', pair[1]);\n        msg.payload = flow.get('temperature');\n    }\n}\nmsg.payload = flow.get('temperature');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f087ea743011c5cd",
+        "type": "comment",
+        "z": "69e195d3274c1ed7",
+        "name": "FORMAT OF DATA",
+        "info": "3 3:1.1 2.2 3.3 4.4 5.5 6.6 7.7 8.8 \nno space on either side of the colon",
+        "x": 430,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6fe2152e7ff10628",
+        "type": "ui_table",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "name": "HV TEMPERATURE",
+        "order": 13,
+        "width": 8,
+        "height": 5,
+        "columns": [
+            {
+                "field": "Number",
+                "title": "Number",
+                "width": "30%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Temperature",
+                "title": "Temperature",
+                "width": "70%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1160,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d47903348b34ceb8",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "select_mux_and_segment_to_return_temperatureTable",
+        "func": "let key = \"mux\" + (flow.get(\"mux\") || 0) + \"segment\" + (flow.get(\"segment\") || 0);\nvar inputobj = msg.payload;\nvar input = inputobj[key];\n\nvar pair = input.split(\":\");\n\nlet mux = parseInt(pair[ 0 ].charAt(0));\nlet segment = parseInt(pair[ 0 ].charAt(2));\n\n\nlet value = pair[ 1 ];\nlet temperature_array = value.split(' ');\n\n// split at every space\n\nvar obj = [];\nfor (let index = 1; index <= 8; index++) {\n    let val;\n    temperature_array[ index - 1 ]=temperature_array[ index - 1 ].trim();\n    if(temperature_array[ index - 1 ]==\"LOW\"||temperature_array[ index - 1 ]==\"HIGH\")\n        val = temperature_array[ index - 1 ];\n    else\n        val = parseFloat(temperature_array[ index - 1 ]);\n    let temp = {\n        Number: index,\n        Temperature:val\n    }\n    obj.push(temp);\n}\nflow.set('temperature', obj);\n\nmsg.payload = obj;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 540,
+        "wires": [
+            [
+                "6fe2152e7ff10628"
+            ]
+        ]
+    },
+    {
+        "id": "60ce63514dddc017",
+        "type": "comment",
+        "z": "69e195d3274c1ed7",
+        "name": "DATABASE",
+        "info": "## Data being overwritten every clockpulse\n## Availability of internet is a must",
+        "x": 410,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "760819ded5361662",
+        "type": "comment",
+        "z": "69e195d3274c1ed7",
+        "name": "Change Dashboard Segment to display",
+        "info": "",
+        "x": 190,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3441534533c6a7dc",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "temp data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "9be657d8372665c8",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "HV Temperature",
+        "firebaseconfig": "",
+        "childpath": "Temperature",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "3441534533c6a7dc",
+                "d47903348b34ceb8"
+            ]
+        ]
+    },
+    {
+        "id": "df387f6e98fb7256",
+        "type": "inject",
+        "z": "69e195d3274c1ed7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 840,
+        "wires": [
+            [
+                "c7f955fa18264193",
+                "ade2e620fe4aad63",
+                "aa913726de30f423",
+                "5e212a24f734ae01",
+                "da1243d65571905c",
+                "8417bddd658952a8",
+                "9be657d8372665c8",
+                "a11cb8ca7d533e53",
+                "7a5f7b8048755b8f",
+                "f0bafa643e91e942",
+                "ee1bfc3241a64c6b",
+                "9202f3a5cacca737",
+                "e79e0766304dbfe4",
+                "ccd7f0a0daf66f08"
+            ]
+        ]
+    },
+    {
+        "id": "e1549a832134aa46",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 42,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Brake %",
+        "format": "<font size = 6 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 800,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "ac6ab1177ddc93f7",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 29,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "HV Hottest cell(°C)",
+        "format": "<font size = 6 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 830,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "4ce7dcf60e53cf1b",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 40,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "Accelerator %",
+        "format": "<font size = 6 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "e2948977cad3dd42",
+        "type": "ui_gauge",
+        "z": "69e195d3274c1ed7",
+        "name": "",
+        "group": "e2bfed23a073f5f0",
+        "order": 47,
+        "width": 9,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "km/h",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ff0000"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "className": "",
+        "x": 950,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "0c548da5a01ae396",
+        "type": "ui_gauge",
+        "z": "69e195d3274c1ed7",
+        "name": "",
+        "group": "e2bfed23a073f5f0",
+        "order": 50,
+        "width": 4,
+        "height": 3,
+        "gtype": "donut",
+        "title": "SoC",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff0000",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "35",
+        "seg2": "70",
+        "className": "",
+        "x": 950,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "384f071078e3e06b",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "Convert data",
+        "func": "let input = msg.payload\n\nlet msg2 = { value: msg.payload };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 800,
+        "wires": [
+            [
+                "e2948977cad3dd42"
+            ]
+        ]
+    },
+    {
+        "id": "df0b41b4122f967f",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "Convert data",
+        "func": "let input = msg.payload\n\nlet msg2 = { value: msg.payload };\n\nreturn msg2;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 840,
+        "wires": [
+            [
+                "0c548da5a01ae396"
+            ]
+        ]
+    },
+    {
+        "id": "19d3c806a061ef8b",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 35,
+        "width": 10,
+        "height": 2,
+        "name": "",
+        "label": "MODE: ",
+        "format": "<font size = 6 color = blue>{{msg.payload}}</font>",
+        "layout": "row-center",
+        "className": "",
+        "x": 800,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "c7f955fa18264193",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "accelelerator",
+        "firebaseconfig": "",
+        "childpath": "accelelerator",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 390,
+        "y": 720,
+        "wires": [
+            [
+                "4ce7dcf60e53cf1b",
+                "4d6c751705fbf8d0"
+            ]
+        ]
+    },
+    {
+        "id": "ade2e620fe4aad63",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "brake",
+        "firebaseconfig": "",
+        "childpath": "brake",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 370,
+        "y": 760,
+        "wires": [
+            [
+                "e1549a832134aa46"
+            ]
+        ]
+    },
+    {
+        "id": "aa913726de30f423",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "speed",
+        "firebaseconfig": "",
+        "childpath": "speed",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 370,
+        "y": 800,
+        "wires": [
+            [
+                "384f071078e3e06b"
+            ]
+        ]
+    },
+    {
+        "id": "5e212a24f734ae01",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "SoC",
+        "firebaseconfig": "",
+        "childpath": "SoC",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 370,
+        "y": 840,
+        "wires": [
+            [
+                "df0b41b4122f967f"
+            ]
+        ]
+    },
+    {
+        "id": "da1243d65571905c",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "Mode",
+        "firebaseconfig": "",
+        "childpath": "Mode",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 370,
+        "y": 880,
+        "wires": [
+            [
+                "19d3c806a061ef8b"
+            ]
+        ]
+    },
+    {
+        "id": "8417bddd658952a8",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "Hottest Cell Temperature",
+        "firebaseconfig": "",
+        "childpath": "Hottest Cell Temperature",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 430,
+        "y": 920,
+        "wires": [
+            [
+                "ac6ab1177ddc93f7"
+            ]
+        ]
+    },
+    {
+        "id": "4d6c751705fbf8d0",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "17fb0452bee53622",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 48,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "HV Current (A)",
+        "format": "<font size = 5 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "7a5f7b8048755b8f",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "HvCurrent",
+        "firebaseconfig": "",
+        "childpath": "HvCurrent",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 390,
+        "y": 1060,
+        "wires": [
+            [
+                "17fb0452bee53622"
+            ]
+        ]
+    },
+    {
+        "id": "6aea57d3314f28d5",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 52,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "LV Voltage (V)",
+        "format": "<font size = 5 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "f0bafa643e91e942",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "LvVoltage",
+        "firebaseconfig": "",
+        "childpath": "LvVoltage",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 380,
+        "y": 1100,
+        "wires": [
+            [
+                "6aea57d3314f28d5"
+            ]
+        ]
+    },
+    {
+        "id": "9168ab50f6f570f5",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 54,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "LV Current (A)",
+        "format": "<font size = 5 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "ee1bfc3241a64c6b",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "LvCurrent",
+        "firebaseconfig": "",
+        "childpath": "LvCurrent",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 380,
+        "y": 1140,
+        "wires": [
+            [
+                "9168ab50f6f570f5"
+            ]
+        ]
+    },
+    {
+        "id": "a5204e280924f795",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 44,
+        "width": 3,
+        "height": 1,
+        "name": "",
+        "label": "HV Voltage(V)",
+        "format": "<font size = 5>{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 820,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "a11cb8ca7d533e53",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "HvVoltage",
+        "firebaseconfig": "",
+        "childpath": "HvVoltage",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 390,
+        "y": 1020,
+        "wires": [
+            [
+                "a5204e280924f795"
+            ]
+        ]
+    },
+    {
+        "id": "c09791709c060035",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 31,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "LV Hottest cell(°C)",
+        "format": "<font size = 5 >{{msg.payload}}</font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 830,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "9202f3a5cacca737",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "LvTempMax",
+        "firebaseconfig": "",
+        "childpath": "LvTempMax",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 390,
+        "y": 1180,
+        "wires": [
+            [
+                "c09791709c060035"
+            ]
+        ]
+    },
+    {
+        "id": "8ff01ee5b6e88e1a",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 58,
+        "width": 18,
+        "height": 2,
+        "name": "",
+        "label": "",
+        "format": "<font color=\"red\"><font size=7>{{msg.payload}}</font></font>",
+        "layout": "col-center",
+        "className": "",
+        "x": 790,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "e79e0766304dbfe4",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "FAULTS",
+        "firebaseconfig": "",
+        "childpath": "FAULTS",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 380,
+        "y": 980,
+        "wires": [
+            [
+                "8ff01ee5b6e88e1a",
+                "2e77f6884e3f0db6"
+            ]
+        ]
+    },
+    {
+        "id": "2e77f6884e3f0db6",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "65ca02927911573e",
+        "type": "ui_table",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "name": "LV TEMPERATURE",
+        "order": 10,
+        "width": 7,
+        "height": 6,
+        "columns": [
+            {
+                "field": "Number",
+                "title": "Number",
+                "width": "30%",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Temperature",
+                "title": "Temperature",
+                "width": "70%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1040,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "5cf5a64afb01d9b1",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "select_mux_and_segment_to_return_temperatureTable",
+        "func": "msg.payload = msg.payload.trim();\nlet temperature_array = msg.payload.split(' ');\n// split at every space\n\nvar obj = [];\n\nfor (let index = 1; index <= 8; index++) {\n    let val = 0;\n    temperature_array[index - 1] = temperature_array[index - 1].trim();\n\n    // ERROR CONDITIONS\n    if (temperature_array[index - 1] == \"LOW\" || temperature_array[index - 1] == \"HIGH\")\n        val = temperature_array[index - 1];\n    else\n        val = parseFloat(temperature_array[index - 1]);\n\n    let temp = {\n        Number: index,\n        Temperature: val\n    }\n    obj.push(temp);\n}\nflow.set('LVtemperature', obj);\n\nmsg.payload = obj;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1260,
+        "wires": [
+            [
+                "91b6e029cbb8c418"
+            ]
+        ]
+    },
+    {
+        "id": "ccd7f0a0daf66f08",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "LVTemp1",
+        "firebaseconfig": "",
+        "childpath": "LVTemp1",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 380,
+        "y": 1260,
+        "wires": [
+            [
+                "5cf5a64afb01d9b1"
+            ]
+        ]
+    },
+    {
+        "id": "ae931365e1f27c93",
+        "type": "function",
+        "z": "69e195d3274c1ed7",
+        "name": "select_mux_and_segment_to_return_temperatureTable",
+        "func": "msg.payload = msg.payload.trim();\nlet temperature_array = msg.payload.split(' ');\n// split at every space\n\nvar obj = flow.get('LVtemperature');\n\nfor (let index = 1; index <= 2; index++) {\n    let val;\n    temperature_array[index - 1] = temperature_array[index - 1].trim();\n\n    // ERROR CONDITIONS\n    if (temperature_array[index - 1] == \"LOW\" || temperature_array[index - 1] == \"HIGH\")\n        val = temperature_array[index - 1];\n    else\n        val = parseFloat(temperature_array[index - 1]);\n\n    let temp = {\n        Number: index+8,\n        Temperature: val\n    }\n    obj.push(temp);\n}\n\nmsg.payload = obj;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1320,
+        "wires": [
+            [
+                "65ca02927911573e",
+                "e6710a9b767dc188"
+            ]
+        ]
+    },
+    {
+        "id": "91b6e029cbb8c418",
+        "type": "firebase.once",
+        "z": "69e195d3274c1ed7",
+        "name": "LVTemp2",
+        "firebaseconfig": "",
+        "childpath": "LVTemp2",
+        "repeatifnull": false,
+        "eventType": "value",
+        "queries": [],
+        "x": 380,
+        "y": 1320,
+        "wires": [
+            [
+                "ae931365e1f27c93"
+            ]
+        ]
+    },
+    {
+        "id": "e6710a9b767dc188",
+        "type": "debug",
+        "z": "69e195d3274c1ed7",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "e2aa91577e6bf502",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "name": "",
+        "label": "HV TEMPERATURES",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "x": 1160,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "421537570903feb2",
+        "type": "ui_text",
+        "z": "69e195d3274c1ed7",
+        "group": "e2bfed23a073f5f0",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "LV TEMPERATURES",
+        "format": "",
+        "layout": "col-center",
+        "className": "",
+        "x": 1040,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "e2bfed23a073f5f0",
+        "type": "ui_group",
+        "name": "PitLaneDashboard",
+        "tab": "2a222b8b594aa2fe",
+        "order": 1,
+        "disp": true,
+        "width": 18,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2a222b8b594aa2fe",
+        "type": "ui_tab",
+        "name": "PitLaneDashboard",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
