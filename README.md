@@ -48,4 +48,5 @@ k3:BMS status 3 0x6B2(DTC flag#1,DTC flag#2,High voltage Cell ID,Pack Health,Low
 #### n:LV Pack Voltage
 #### o:LV Pack Current
 
+Added script file start_chromium.sh in root
 dont delete - https://smarthomepursuits.com/open-website-on-startup-with-raspberry-pi-os/
