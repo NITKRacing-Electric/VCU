@@ -20,8 +20,8 @@
 1: (Accelerator) (Brake) (Driver Mode)\
 2: (Speed) (G-Values)\
 3: (SOC) - HV \
-4: (SOC 2) - LV
-5: (Temperature of the hottest cell)\
+4: (SOC 2) - LV \
+5: (Temperature of the hottest cell) \
 6: [ FAULTS ] //array of faults 4 FAULTS\
 
 ### DAQ - RF TRANSMISSION - CAN ADDRESSES AND meta-data
