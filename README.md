@@ -15,16 +15,15 @@
 6: (Temperature of the hottest cell) - float\
 7: [ FAULTS ] //array of faults
 
-## Metadata for data - serial port
+## Metadata for data - serial port IMPORTANT
 ### DASHBOARD
-1: (Accelerator)\
-2: (Brake)\
-3: (Speed)\
-4: (SOC) - HV \
-5: (SOC 2) - LV
-6: Mode - 1acceleration, 2 endurance or 3 test\
-7: (Temperature of the hottest cell)\
-8: [ FAULTS ] //array of faults 4 FAULTS 
+1: (Accelerator) (Brake) (Driver Mode)\
+2: (Speed)\
+3: (SOC) - HV \
+4: (SOC 2) - LV
+5: (Temperature of the hottest cell)\
+6: [ FAULTS ] //array of faults 4 FAULTS\
+7: (G-Values)\
 
 ### DAQ - RF TRANSMISSION - CAN ADDRESSES AND meta-data
 a: 2-speed sensor value -> 2025 4-wheel speed sensor values separated by spaces\
